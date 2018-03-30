@@ -43,11 +43,5 @@ module.exports = {
       }
     },
     runtimeChunk: false
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, 'dist'),
-    host: 'localhost',
-    compress: true,
-    port: 1227
   }
 }
