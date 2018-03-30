@@ -11,9 +11,9 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: "[name].js",
+    filename: "[name].[chunkHash:8].js",
     publicPath: './',
-    chunkFilename: "[name].js"
+    chunkFilename: "[name].[chunkHash:8].js"
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
@@ -23,7 +23,7 @@ module.exports = {
         removeAttributeQuotes: true
       },
       hash: false,
-      template: './public/index.html'
+      template: './src/index.html'
     }),
   ],
   optimization: {
