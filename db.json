@@ -1,6 +1,12 @@
 {
-  "comments": {
-    "id": 1,
-    "content": "content"
-  }
+  "comments": [
+    {
+      "id": 1,
+      "content": "ggg"
+    },
+    {
+      "id": 2,
+      "content": "ssss"
+    }
+  ]
 }
