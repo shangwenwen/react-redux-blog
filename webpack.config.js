@@ -2,7 +2,6 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -11,18 +10,17 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: "[name].[chunkHash:8].js",
+    filename: "[name].js",
     publicPath: './',
-    chunkFilename: "[name].[chunkHash:8].js"
+    chunkFilename: "[name].js"
   },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'react-redux-blog',
       minify: {
         removeAttributeQuotes: true
       },
-      hash: false,
+      hash: true,
       template: './src/index.html'
     }),
   ],
@@ -45,5 +43,11 @@ module.exports = {
       }
     },
     runtimeChunk: false
+  },
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    host: 'localhost',
+    compress: true,
+    port: 8080
   }
 }
