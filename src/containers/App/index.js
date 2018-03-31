@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { hot } from 'react-hot-loader'
+import './style.css'
 
 class App extends Component {
-  constructor(props) {
-    super(props)
+  constructor(){
+    super(...arguments)
   }
 
   render() {
     return(
       <div className="app">
-        hello worldss
+        hello
       </div>
     )
   }

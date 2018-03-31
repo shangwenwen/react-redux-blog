@@ -1,16 +1,19 @@
-/* eslint-disable */
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/index'],
+  entry: ['./src/index.js'],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].js',
   },
   module: {
     rules: [
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
       {
         exclude: /node_modules|packages/,
         test: /\.js$/,
@@ -18,7 +21,16 @@ module.exports = {
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin(), new webpack.NamedModulesPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'react-redux-blog',
+      minify: {
+        removeAttributeQuotes: true
+      },
+      hash: true,
+      template: './src/index.html'
+    }),
+    new webpack.NamedModulesPlugin()],
 }
 
 // // webpack.config.js
