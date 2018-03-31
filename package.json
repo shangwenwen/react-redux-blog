@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "start": "webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot",
+    "server": "node json-server.js"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -19,6 +20,7 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
+    "normalize.css": "^8.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "next",
