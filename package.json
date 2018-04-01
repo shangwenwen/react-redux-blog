@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "license": "ISC",
   "scripts": {
-    "start": "webpack-dev-server --hot",
+    "start": "webpack-dev-server --hot --port 8080 --open",
+    "build": "webpack",
     "server": "node json-server.js"
   },
   "devDependencies": {
