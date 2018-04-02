@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     app: './src/index.js',
-    // vendor: ['react', 'react-dom']
+    vendor: ['react', 'react-dom']
   },
 
   output: {
@@ -29,9 +29,9 @@ module.exports = {
   },
 
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   names: ['vendor', 'manifest']
-    // }),
+    new webpack.optimize.CommonsChunkPlugin({
+      names: ['vendor', 'manifest']
+    }),
     new HtmlWebpackPlugin({
       title: 'react-redux-blog',
       template: './src/index.html',

@@ -1,3 +1,5 @@
+import './style.css'
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
@@ -8,8 +10,6 @@ import HeaderComponent from '../../components/Header/'
 import FooterComponent from '../../components/Footer/'
 import HomeContainer from '../Home/'
 import AboutContainer from '../About/'
-
-import './style.css'
 
 class AppContainer extends Component {
   render(){

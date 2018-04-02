@@ -3,22 +3,20 @@ import 'normalize.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'react-router-redux'
+import { Router } from 'react-router-dom'
+import store from './redux/store'
 import createHistory from 'history/createBrowserHistory'
 
-import configureStore from './redux/store'
-
+// components & containers
 import AppContainer from './containers/App/'
 
 const history = createHistory()
 
-const store = configureStore()
-
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
+    <Router history={history}>
       <AppContainer />
-    </ConnectedRouter>
+    </Router>
   </Provider>,
   document.getElementById('root')
 )
