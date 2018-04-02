@@ -1,10 +1,23 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-import App from './containers/App/index.js'
-
 import 'normalize.css'
 
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { ConnectedRouter } from 'react-router-redux'
+import createHistory from 'history/createBrowserHistory'
+
+import configureStore from './redux/store.js'
+
+import AppContainer from './containers/App/'
+
+const history = createHistory()
+const store = configureStore()
+
 ReactDOM.render(
-  <App />,
-  document.getElementById('app')
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <AppContainer />
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
 )
