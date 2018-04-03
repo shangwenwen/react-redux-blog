@@ -2,7 +2,7 @@ import './style.css'
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 
 // components & containers
@@ -11,11 +11,17 @@ import FooterComponent from '../../components/Footer/'
 import HomeContainer from '../Home/'
 import AboutContainer from '../About/'
 
+// actions
+import {appActions} from '../../redux/app'
+
 class AppContainer extends Component {
+
+
   render(){
+    console.log(this.props)
     return(
       <div className="main">
-        <HeaderComponent />
+        <HeaderComponent title="react" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={HomeContainer} />
@@ -28,4 +34,8 @@ class AppContainer extends Component {
   }
 }
 
-export default hot(module)(AppContainer)
+const mapStateToProps = (state) => {
+  return {user:state.user}
+}
+
+export default withRouter(connect(mapStateToProps)(hot(module)(AppContainer)))

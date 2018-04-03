@@ -1,4 +1,21 @@
 {
+  "user": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+
+  "blog": [
+    {
+      "id": 1,
+      "categary": "blog",
+      "title": "title",
+      "content": "content"
+    }
+  ],
+
   "comments": [
     {
       "id": 1,
