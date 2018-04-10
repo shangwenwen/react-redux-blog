@@ -4,9 +4,13 @@
       "id": 1,
       "username": "admin",
       "password": "admin"
+    },
+    {
+      "id": "jfteakjw44kke8aen",
+      "username": "小明",
+      "password": "ss"
     }
   ],
-
   "blog": [
     {
       "id": 1,
@@ -15,7 +19,6 @@
       "content": "content"
     }
   ],
-
   "comments": [
     {
       "id": 1,
