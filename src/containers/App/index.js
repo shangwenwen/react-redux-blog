@@ -12,42 +12,9 @@ import FooterComponent from '../../components/Footer/'
 import HomeContainer from '../Home/'
 import AboutContainer from '../About/'
 
-// actions
-import { appActions } from '../../redux/app'
-
 class AppContainer extends Component {
-
-  genNonDuplicateID() {
-    let idStr = Date.now()
-      .toString(36)
-    idStr += Math.random()
-      .toString(36)
-      .substr(3)
-    return idStr
-  }
-
-  componentDidMount() {
-    const data = fetch('http://localhost:3000/api/user/', {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          "id": this.genNonDuplicateID(),
-          "username": "小明",
-          "password": "ss"
-        })
-      })
-      .then(function (response) {
-        return response.json()
-      })
-      .then(function (json) {
-        console.log('parsed json: ', json)
-      })
-      .catch(function (ex) {
-        console.log('parsing failed: ', ex)
-      })
+  constructor(props){
+    super(props)
   }
 
   render() {
@@ -66,10 +33,4 @@ class AppContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(hot(module)(AppContainer)))
+export default withRouter(connect(null, null)(hot(module)(AppContainer)))

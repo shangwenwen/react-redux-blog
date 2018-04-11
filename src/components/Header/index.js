@@ -7,7 +7,7 @@ class HeaderComponent extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props.title)
+    // console.log(this.props.title)
   }
 
   render(){
