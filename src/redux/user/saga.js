@@ -4,7 +4,7 @@ import { call, put, select } from 'redux-saga/effects'
 import * as API from '../api'
 import { userActions } from './action'
 
-function* requestUser(action) {
+function* userSaga(action) {
   try {
     const payload = yield call(API.fetchUser, action.id)
 
@@ -21,6 +21,6 @@ function* requestUser(action) {
   }
 }
 
-export function* userSagas() {
-  yield * takeEvery(userActions.REQUEST_USER, requestUser)
+export function* watchUserSaga() {
+  yield * takeEvery(userActions.REQUEST_USER, userSaga)
 }

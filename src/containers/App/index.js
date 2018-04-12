@@ -28,7 +28,6 @@ class AppContainer extends Component {
   render() {
     const {user} = this.props
     const username = user.get('username')
-    console.log(username)
     return(
       <div className="main">
         <HeaderComponent title="react title" />
