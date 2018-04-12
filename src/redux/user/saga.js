@@ -1,7 +1,7 @@
 import { takeEvery, delay } from 'redux-saga'
 import { call, put, select } from 'redux-saga/effects'
 
-import * as API from '../api'
+import * as API from '../helpers/api'
 import { userActions } from './action'
 
 function* userSaga(action) {

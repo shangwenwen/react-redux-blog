@@ -14,8 +14,7 @@ import AppContainer from './containers/App/'
 const history = createHistory()
 
 let localMe = localStorage.getItem('username')
-
-// localMe && (localMe = JSON.parse(localMe))
+localMe && (localMe = JSON.parse(localMe))
 
 const store = configureStore(
   localMe ? { auth: fromJS(localMe) } : undefined
