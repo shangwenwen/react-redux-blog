@@ -6,6 +6,9 @@ import { connect } from 'react-redux'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { hot } from 'react-hot-loader'
 
+// actions
+import { userActions } from '../../redux/user/'
+
 // components & containers
 import HeaderComponent from '../../components/Header/'
 import FooterComponent from '../../components/Footer/'
@@ -17,10 +20,17 @@ class AppContainer extends Component {
     super(props)
   }
 
+  componentWillMount(){
+    this.props.requestUser(1)
+  }
+
+
   render() {
+    const {user} = this.props
+    const username = user.get('username')
     return(
       <div className="main">
-        <HeaderComponent title="react" />
+        <HeaderComponent user title="react title" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={HomeContainer} />
@@ -33,4 +43,15 @@ class AppContainer extends Component {
   }
 }
 
-export default withRouter(connect(null, null)(hot(module)(AppContainer)))
+// connect redux
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = {
+  requestUser: userActions.requestUser
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(hot(module)(AppContainer)))

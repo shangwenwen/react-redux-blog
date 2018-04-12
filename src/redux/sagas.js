@@ -1,8 +1,8 @@
 import { fork } from 'redux-saga/effects'
-import { watchLoginRequest } from './user/saga'
+import { userSagas } from './user/'
 
 export default function* rootSaga() {
   yield [
-    fork(watchLoginRequest)
+    fork(userSagas)
   ]
 }

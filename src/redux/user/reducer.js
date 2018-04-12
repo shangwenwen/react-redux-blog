@@ -1,23 +1,23 @@
 import Immutable from 'immutable'
-import { REQUEST_USER, REQUEST_USER_SUCCESS, REQUEST_USER_FAILURE } from './action'
+import { userActions } from './action'
 
 const initialState = Immutable.fromJS({
-  id: null,
+  id: 1,
   username: null,
-  error: null
+  errors: null
 })
 
-export default function(state = initialState, action = {}) {
-  switch (action.type) {
-    case REQUEST_USER:
+export function userReducer(state = initialState, action = {}) {
+  switch(action.type) {
+    case userActions.REQUEST_USER:
       return state.merge({
-        'id': action.data,
-        'error': null
-      });
-    case REQUEST_USER_SUCCESS:
-      return state.set('username', action.data);
-    case REQUEST_USER_FAILURE:
-      return state.set('error', action.data);
+        'id': action.id,
+        'errors': null
+      })
+    case userActions.REQUEST_USER_SUCCESS:
+      return state.set('username', action.username)
+    case userActions.REQUEST_USER_FAILURE:
+      return state.set('errors', action.errors)
     default:
       return state
   }

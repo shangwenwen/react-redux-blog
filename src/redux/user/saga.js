@@ -1,16 +1,25 @@
-import { select, put, call } from 'redux-saga/effects'
-import { getUser } from './selector'
-import { requestUser, requestUserSuccess, requestUserFailure } from './action'
-import { fetchUser } from '../api/index.js'
+import { takeEvery, delay } from 'redux-saga'
+import { call, put, select } from 'redux-saga/effects'
 
-export function* requestUserSaga() {
+import * as API from '../api'
+import { userActions } from './action'
+
+function* requestUser(action) {
   try {
-    const user = yield select(getUser)
-    const id = user.get('id')
-    const json = yield put(fetchUser, id)
-    
-    yield put(requestUserSuccess(json))
+    const payload = yield call(API.fetchUser, action.id)
+
+    if(payload.data.username) {
+      yield put(userActions.requestUserSuccess(payload.data.username))
+    }
   } catch(error) {
-    yield put(requestUserFailure(error))
+    console.log('', error)
+    yield put(userActions.requestUserFailure({
+      'status': error.response.status,
+      'statusText': error.response.statusText
+    }))
   }
+}
+
+export function* userSagas() {
+  yield * takeEvery(userActions.REQUEST_USER, requestUser)
 }
