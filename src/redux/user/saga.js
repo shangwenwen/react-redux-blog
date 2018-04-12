@@ -9,6 +9,7 @@ function* requestUser(action) {
     const payload = yield call(API.fetchUser, action.id)
 
     if(payload.data.username) {
+      // localStorage.removeItem('username')
       yield put(userActions.requestUserSuccess(payload.data.username))
     }
   } catch(error) {

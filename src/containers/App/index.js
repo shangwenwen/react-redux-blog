@@ -14,6 +14,7 @@ import HeaderComponent from '../../components/Header/'
 import FooterComponent from '../../components/Footer/'
 import HomeContainer from '../Home/'
 import AboutContainer from '../About/'
+import BlogContainer from '../Blog/'
 
 class AppContainer extends Component {
   constructor(props){
@@ -24,17 +25,18 @@ class AppContainer extends Component {
     this.props.requestUser(1)
   }
 
-
   render() {
     const {user} = this.props
     const username = user.get('username')
+    console.log(username)
     return(
       <div className="main">
-        <HeaderComponent user title="react title" />
+        <HeaderComponent title="react title" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={HomeContainer} />
             <Route path="/about" component={AboutContainer} />
+            <Route path="/blog/:tag" component={BlogContainer} />
           </Switch>
         </div>
         <FooterComponent />

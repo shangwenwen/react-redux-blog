@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 
 class HomeContainer extends Component {
 
+  componentDidMount(){
+    console.log(this.props.match)
+  }
+  
   render(){
-
     return(
       <div>
       home

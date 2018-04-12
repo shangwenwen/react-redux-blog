@@ -4,22 +4,30 @@
       "id": 1,
       "username": "admin",
       "password": "admin"
-    },
-    {
-      "id": 2,
-      "username": "ddaaff",
-      "password": "admin"
-    },
-    {
-      "id": 3,
-      "username": "hhhh",
-      "password": "admin"
     }
   ],
   "blog": [
     {
       "id": 1,
-      "categary": "blog",
+      "categary": "html",
+      "title": "title",
+      "content": "content"
+    },
+    {
+      "id": 2,
+      "categary": "css",
+      "title": "title",
+      "content": "content"
+    },
+    {
+      "id": 3,
+      "categary": "js",
+      "title": "title",
+      "content": "content"
+    },
+    {
+      "id": 4,
+      "categary": "css",
       "title": "title",
       "content": "content"
     }

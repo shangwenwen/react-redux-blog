@@ -3,11 +3,12 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from './reducers.js'
 import rootSaga from './sagas'
 
-const configureStore = () => {
+const configureStore = (preloadedState) => {
   const sagaMiddleware = createSagaMiddleware()
 
   const store = createStore(
     rootReducer,
+    preloadedState,
     compose(
       applyMiddleware(sagaMiddleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
@@ -19,4 +20,4 @@ const configureStore = () => {
   return store
 }
 
-export default configureStore()
+export default configureStore
