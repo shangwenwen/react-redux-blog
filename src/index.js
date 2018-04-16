@@ -6,12 +6,14 @@ import { Provider } from 'react-redux'
 import { Router } from 'react-router-dom'
 import { fromJS } from 'immutable'
 import configureStore from './redux/store'
-import createHistory from 'history/createBrowserHistory'
+import { history } from './helpers/history'
 
 // components & containers
 import AppContainer from './containers/App/'
 
-const history = createHistory()
+// fake backend
+import { configureFakeBackend } from './helpers/fake-backend'
+configureFakeBackend()
 
 let localMe = localStorage.getItem('username')
 localMe && (localMe = JSON.parse(localMe))

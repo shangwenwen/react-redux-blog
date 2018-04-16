@@ -16,5 +16,16 @@ export const userActions = {
   requestUserFailure: (errors) => ({
     type: userActions.REQUEST_USER_FAILURE,
     errors
+  }),
+
+  LOGIN: 'LOGIN',
+  LOGIN_REQUEST: 'LOGIN_REQUEST',
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+  LOGIN_FAILURE: 'LOGIN_FAILURE',
+
+  login: (username, password) => ({
+    type: userActions.LOGIN,
+    username,
+    password
   })
 }

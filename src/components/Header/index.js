@@ -10,6 +10,7 @@ const HeaderComponent = () => {
       <Link to='/about'>about</Link>
       <Link to='/blog/js'>js</Link>
       <Link to='/blog/css'>css</Link>
+      <Link to='/login'>login</Link>
     </div>
   )
 }
