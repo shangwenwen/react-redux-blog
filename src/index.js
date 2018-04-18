@@ -15,11 +15,12 @@ import AppContainer from './containers/App/'
 import { configureFakeBackend } from './helpers/fake-backend'
 configureFakeBackend()
 
-let localMe = localStorage.getItem('username')
+let localMe = localStorage.getItem('user')
+
 localMe && (localMe = JSON.parse(localMe))
 
 const store = configureStore(
-  localMe ? { auth: fromJS(localMe) } : undefined
+  localMe ? { user: fromJS(localMe) } : undefined
 )
 
 ReactDOM.render(

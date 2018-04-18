@@ -1,4 +1,4 @@
-import { authHeader } from '../helpers/auth-header'
+import { authHeader } from '../..//helpers/auth-header'
 
 export const userService = {
   login,
@@ -27,10 +27,10 @@ function login(username, password) {
     })
     .then(user => {
       // login successful if there's a jwt token in the response
-      if(user && user.token) {
-        // store user details and jwt token in local storage to keep user logged in between page refreshes
-        localStorage.setItem('user', JSON.stringify(user))
-      }
+      // if(user && user.token) {
+      //   // store user details and jwt token in local storage to keep user logged in between page refreshes
+      //   localStorage.setItem('user', JSON.stringify(user))
+      // }
 
       return user
     })

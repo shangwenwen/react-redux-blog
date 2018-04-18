@@ -12,7 +12,7 @@ import { userActions } from '../../redux/user/'
 // components & containers
 import HeaderComponent from '../../components/Header/'
 import FooterComponent from '../../components/Footer/'
-import PrivateRoute from '../../components/PrivateRoute'
+// import PrivateRoute from '../../components/PrivateRoute'
 import HomeContainer from '../Home/'
 import AboutContainer from '../About/'
 import BlogContainer from '../Blog/'
@@ -28,15 +28,15 @@ class AppContainer extends Component {
   }
 
   render() {
-    const {user} = this.props
+    const { user, logout } = this.props
     const username = user.get('username')
     return(
       <div className="main">
-        <HeaderComponent title="react title" />
+        <HeaderComponent logout={logout} username={username} title="react title" />
         <div className="container">
           <Switch>
-            <PrivateRoute exact path="/" component={HomeContainer} />
-            <PrivateRoute path="/about" component={AboutContainer} />
+            <Route exact path="/" component={HomeContainer} />
+            <Route path="/about" component={AboutContainer} />
             <Route path="/blog/:tag" component={BlogContainer} />
             <Route path="/login" component={LoginContainer} />
           </Switch>
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  requestUser: userActions.requestUser
+  logout: userActions.logout
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(hot(module)(AppContainer)))

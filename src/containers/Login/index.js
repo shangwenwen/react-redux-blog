@@ -57,4 +57,4 @@ class LoginContainer extends Component {
 }
 
 // connect redux
-export default connect(null, {login:userActions.login})(LoginContainer)
+export default connect(null, {login:userActions.loginRequest})(LoginContainer)

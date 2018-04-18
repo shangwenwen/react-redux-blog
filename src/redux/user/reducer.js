@@ -1,23 +1,24 @@
-import Immutable from 'immutable'
+import Immutable, { Map } from 'immutable'
 import { userActions } from './action'
 
-const initialState = Immutable.fromJS({
-  id: 1,
-  username: null,
-  errors: null
-})
-
-export function userReducer(state = initialState, action = {}) {
+export function userReducer(state = new Map(), action = {}) {
   switch(action.type) {
-    case userActions.REQUEST_USER:
+    case userActions.LOGIN_REQUEST:
+      return state.set('isPending', true)
+    case userActions.LOGIN_FAILURE:
       return state.merge({
-        'id': action.id,
-        'errors': null
+        'error': action.error,
+        'isPending': false
       })
-    case userActions.REQUEST_USER_SUCCESS:
-      return state.set('username', action.username)
-    case userActions.REQUEST_USER_FAILURE:
-      return state.set('errors', action.errors)
+    case userActions.LOGIN_SUCCESS:
+      return state.merge({
+        'username': action.payload.username,
+        'token': action.payload.token,
+        'isPending': false,
+        'error': null
+      })
+    case userActions.LOGOUT:
+      return new Map()
     default:
       return state
   }

@@ -6,6 +6,7 @@ module.exports = function (req, res, next) {
 
   let unauthorized = true
   const token = req.headers['access-token']
+
   if(token) {
     const expired = now - token > expireTime
     if(!expired) {
