@@ -1,25 +1,19 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
-import JwModal from 'jw-react-modal'
+import Dialog from '../Dialog'
 
 import './style.css'
-
-// const customStyles = {
-//     body: {
-//         backgroundColor: 'red',
-//         fontSize: 100
-//     },
-//     background: {
-//         backgroundColor: 'green',
-//     }
-// };
 
 class HeaderComponent extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      visible: false
+    }
     this.handleLogout = this.handleLogout.bind(this)
     this.handleLogin = this.handleLogin.bind(this)
+    this.onClose = this.onClose.bind(this)
   }
 
   handleLogout() {
@@ -29,7 +23,15 @@ class HeaderComponent extends Component {
   }
 
   handleLogin(e) {
-    JwModal.open('jw-modal-1')(e)
+    this.setState({
+      visible: true
+    })
+  }
+
+  onClose() {
+    this.setState({
+      visible: false
+    })
   }
 
 
@@ -37,15 +39,6 @@ class HeaderComponent extends Component {
   render() {
     const hasLogin = localStorage.getItem('user')
     const { username } = this.props
-
-    const dialog = (
-      <JwModal id="jw-modal-1">
-        <p>
-            Add any html you like in here :)
-        </p>
-        <button onClick={JwModal.close('jw-modal-1')}>Close</button>
-      </JwModal>
-    )
 
     return(
       <div className="nav">
@@ -58,7 +51,9 @@ class HeaderComponent extends Component {
           : <a onClick={this.handleLogin}>login</a>
         }
 
-        {dialog}
+        <Dialog onClose={this.onClose} visible={this.state.visible}>
+          <p>sss</p>
+        </Dialog>
 
       </div>
     )
