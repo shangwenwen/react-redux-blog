@@ -44,7 +44,7 @@ class Dialog extends Component {
     if(visible) {
       return(
         <Portal onClose={this.onClose}>
-          <DialogEl onClose={this.onClose}>
+          <DialogEl {...this.props} onClose={this.onClose}>
             {this.props.children}
           </DialogEl>
         </Portal>

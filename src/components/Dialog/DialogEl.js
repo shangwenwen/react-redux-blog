@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 class DialogInnerEl extends Component {
   render() {
     const { children } = this.props
-
     return(
       <div>
         <div>{children}</div>
@@ -13,12 +12,18 @@ class DialogInnerEl extends Component {
 }
 
 class DialogElWrapper extends Component {
-  render() {
-    const { children } = this.props
+  onMaskClick = e => {
+    this.props.onClose(e);
+  }
 
+  render() {
+    const { children, visible, mask } = this.props
+    console.log(this.props)
     return(
       <div>
+        {visible && mask && (<p onClick={this.onMaskClick} className={`dialog-r-backdrop`} />)}
         <div>
+        ssss
           {children}
         </div>
       </div>
