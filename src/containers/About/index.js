@@ -7,6 +7,7 @@ class AboutContainer extends Component {
   }
 
   render(){
+    console.log(this.props)
     return(
       <div>about.... <Link to='/'>home</Link></div>
     )

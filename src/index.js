@@ -19,6 +19,10 @@ let localMe = localStorage.getItem('user')
 
 localMe && (localMe = JSON.parse(localMe))
 
+const hasLogin = !!localMe
+
+console.log(hasLogin)
+
 const store = configureStore(
   localMe ? { user: fromJS(localMe) } : undefined
 )
@@ -26,7 +30,7 @@ const store = configureStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <AppContainer />
+      <AppContainer hasLogin={hasLogin} />
     </Router>
   </Provider>,
   document.getElementById('root')
