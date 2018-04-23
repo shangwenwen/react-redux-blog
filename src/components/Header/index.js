@@ -1,15 +1,37 @@
 import React, { Component } from "react"
 import { Link } from 'react-router-dom'
 
+import LoginComponent from '../Login'
+
 import './style.css'
 
 class HeaderComponent extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      visible: false
+    }
+
+    this.handleOpenLogin = this.handleOpenLogin.bind(this)
+    this.handleCloseLogin = this.handleCloseLogin.bind(this)
+  }
+
+  handleOpenLogin() {
+    this.setState({
+      visible: true
+    })
+  }
+
+  handleCloseLogin() {
+    this.setState({
+      visible: false
+    })
   }
 
   render() {
-    const { username, hasLogin, logout, login } = this.props
+    const { username } = this.props
+
+    const hasLogin = !!localStorage.getItem('user')
 
     return(
       <div className="nav">
@@ -18,9 +40,11 @@ class HeaderComponent extends Component {
         <Link to='/blog/js'>js</Link>
         <Link to='/blog/css'>css</Link>
         { hasLogin
-          ? <div>{username}<a href="#" onClick={logout}>LOGOUT</a></div>
-          : <a onClick={login}>login</a>
+          ? <div>{username}<a href="#">LOGOUT</a></div>
+          : <Link to='/login'>css</Link>
         }
+
+        <LoginComponent onClose={this.handleCloseLogin} visible={this.state.visible} />
 
       </div>
     )

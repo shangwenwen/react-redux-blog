@@ -20,6 +20,8 @@ function* userSaga(action) {
     yield put(userActions.loginFailure({
       'errorText': error
     }))
+  } finally {
+    console.log('finally')
   }
 }
 

@@ -1,14 +1,14 @@
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom'
 
-import Portalv4 from './Portal';
-import LegacyPortal from './LegacyPortal';
+import Portalv4 from './Portal'
+import LegacyPortal from './LegacyPortal'
 
-let Portal;
+let Portal
 
-if (ReactDOM.createPortal) {
-  Portal = Portalv4;
+if(ReactDOM.createPortal) {
+  Portal = Portalv4
 } else {
-  Portal = LegacyPortal;
+  Portal = LegacyPortal
 }
 
-export default Portal;
+export default Portal

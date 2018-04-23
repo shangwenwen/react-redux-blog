@@ -12,7 +12,6 @@ import { userActions } from '../../redux/user/'
 // components & containers
 import HeaderComponent from '../../components/Header/'
 import FooterComponent from '../../components/Footer/'
-import Dialog from '../../components/Dialog'
 // import PrivateRoute from '../../components/PrivateRoute'
 import HomeContainer from '../Home/'
 import AboutContainer from '../About/'
@@ -22,44 +21,19 @@ import LoginContainer from '../Login/'
 class AppContainer extends Component {
   constructor(props){
     super(props)
-
-    this.state = {
-      visible: false
-    }
-
-    this.handleLogout = this.handleLogout.bind(this)
-    this.handleLogin = this.handleLogin.bind(this)
-    this.onClose = this.onClose.bind(this)
   }
 
   componentWillMount(){
     // this.props.requestUser(1)
   }
 
-  handleLogout() {
-    const { logout } = this.props
-    localStorage.removeItem('user')
-    logout()
-  }
-
-  handleLogin(e) {
-    this.setState({
-      visible: true
-    })
-  }
-
-  onClose() {
-    this.setState({
-      visible: false
-    })
-  }
-
   render() {
-    const { user, logout, hasLogin } = this.props
+    const { user } = this.props
+
     const username = user.get('username')
     return(
       <div className="main">
-        <HeaderComponent hasLogin={hasLogin} login={this.handleLogin} logout={logout} username={username} title="react title" />
+        <HeaderComponent username={username} title="react title" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={HomeContainer} />
@@ -69,9 +43,6 @@ class AppContainer extends Component {
           </Switch>
         </div>
         <FooterComponent />
-        <Dialog onClose={this.onClose} visible={this.state.visible}>
-          <p>sss</p>
-        </Dialog>
       </div>
     )
   }
