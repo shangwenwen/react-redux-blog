@@ -1,5 +1,3 @@
-import 'normalize.css'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -10,6 +8,8 @@ import { history } from './helpers/history'
 
 // components & containers
 import AppContainer from './containers/App/'
+
+import 'normalize.css'
 
 // fake backend
 import { configureFakeBackend } from './helpers/fake-backend'

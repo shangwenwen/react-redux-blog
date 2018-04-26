@@ -14,6 +14,7 @@ class HeaderComponent extends Component {
 
     this.handleOpenLogin = this.handleOpenLogin.bind(this)
     this.handleCloseLogin = this.handleCloseLogin.bind(this)
+    this.handleLogout = this.handleLogout.bind(this)
   }
 
   handleOpenLogin() {
@@ -28,10 +29,12 @@ class HeaderComponent extends Component {
     })
   }
 
+  handleLogout() {
+    this.props.logout()
+  }
+
   render() {
     const { username } = this.props
-
-    const hasLogin = !!localStorage.getItem('user')
 
     return(
       <div className="nav">
@@ -39,9 +42,9 @@ class HeaderComponent extends Component {
         <Link to='/about'>about</Link>
         <Link to='/blog/js'>js</Link>
         <Link to='/blog/css'>css</Link>
-        { hasLogin
-          ? <div>{username}<a href="#">LOGOUT</a></div>
-          : <Link to='/login'>css</Link>
+        { username
+          ? <div>{username}<a onClick={this.handleLogout}>LOGOUT</a></div>
+          : <Link to='/login'>login</Link>
         }
 
         <LoginComponent onClose={this.handleCloseLogin} visible={this.state.visible} />

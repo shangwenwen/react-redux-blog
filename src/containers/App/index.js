@@ -28,12 +28,12 @@ class AppContainer extends Component {
   }
 
   render() {
-    const { user } = this.props
+    const { user, logout } = this.props
 
     const username = user.get('username')
     return(
       <div className="main">
-        <HeaderComponent username={username} title="react title" />
+        <HeaderComponent logout={logout} username={username} title="react title" />
         <div className="container">
           <Switch>
             <Route exact path="/" component={HomeContainer} />

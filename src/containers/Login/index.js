@@ -34,12 +34,11 @@ class LoginContainer extends Component {
 
   render() {
     const { username, password } = this.state
+    const { user } = this.props
+    const hasLogin = !!user.get('token')
 
-    const { location: {state}, history: {goBack}} = this.props
-    const {from} = state || {from: {pathname: '/'}}
-
-    if(localStorage.getItem('user')) {
-      return <Redirect to={from}/>
+    if(hasLogin) {
+      return <Redirect to='/' />
     } else {
       return(
         <div>
@@ -51,10 +50,12 @@ class LoginContainer extends Component {
         </div>
       )
     }
-
-
   }
 }
 
 // connect redux
-export default connect(null, {login:userActions.loginRequest})(LoginContainer)
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps, {login:userActions.loginRequest})(LoginContainer)

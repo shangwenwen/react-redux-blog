@@ -1,30 +1,68 @@
-import { takeEvery, delay } from 'redux-saga'
-import { call, put, select } from 'redux-saga/effects'
+import { isCancelError } from 'redux-saga'
+import { race, take, put, call, fork, cancel } from 'redux-saga/effects'
 
 import { userService } from './service'
 import { userActions } from './action'
 
 import { history } from '../../helpers/history'
 
-function* userSaga(action) {
-  try {
-    const payload = yield call(userService.login, action.username, action.password)
-    console.log(payload)
-
-    if(payload.username) {
-      localStorage.setItem('user', JSON.stringify(payload))
-      history.push('/')
-      yield put(userActions.loginSuccess(payload))
+function* login(username, password) {
+    try {
+      const user = yield call(userService.login, username, password)
+      yield put(userActions.loginSuccess(user))
+      return user
+    } catch (error) {
+      yield put(userActions.loginFailure(error))
     }
-  } catch(error) {
-    yield put(userActions.loginFailure({
-      'errorText': error
-    }))
-  } finally {
-    console.log('finally')
+}
+
+function* logout() {
+  while (userActions.LOGOUT) {
+    try {
+      yield call(userService.logout)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
 export function* watchUserSaga() {
-  yield * takeEvery(userActions.LOGIN_REQUEST, userSaga)
+  while(true) {
+    console.log('01')
+    const { sss } = yield take(userActions.LOGIN_REQUEST)
+    console.log('02')
+    const { login, logout } = yield race({
+      login: call(login,sss),
+      logout: fork(logout)
+    })
+  }
 }
+
+
+
+// function* authorizedFlow() {
+//   let payload
+//   while (({ payload } = yield take([actions.LOGIN_SUCCESS, actions.START_SIGNUP_SUCCESS]))) {
+//     const { access_token } = payload
+//     yield fork(logoutFlow, access_token)
+//     yield race({
+//       watchers: [
+//         call(refreshUser, access_token),
+//         call(refreshInvoices, access_token),
+//         call(refreshPendingTransactions, access_token),
+//       ],
+//       logout: take(actions.LOGOUT_SUCCESS),
+//     })
+//   }
+// }
+//
+// function* logoutFlow(access_token) {
+//   while (yield take(actions.LOGOUT)) {
+//     try {
+//       yield call(api.logoutAsync, access_token)
+//       yield put(actions.logoutSuccess())
+//     } catch (error) {
+//       yield put(actions.logoutError(error))
+//     }
+//   }
+// }
